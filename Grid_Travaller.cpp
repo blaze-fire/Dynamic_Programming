@@ -1,0 +1,30 @@
+// Used memoization to store values already computed to save time calculating them again
+
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+typedef pair<int,int> Pair; 
+
+double GridTraveller(int m, int n, map <Pair,double> &memo){
+  Pair key = make_pair(m,n);
+
+  if(memo.count(key)>0) return memo[key];
+  if(m==1 && n==1)  return 1;
+  if(m==0 || n==0) return 0;
+
+  memo[key] = GridTraveller(m-1,n,memo) + GridTraveller(m,n-1,memo);
+  return memo[key];
+}
+
+int main(){
+    map <Pair,double> memo;
+
+    cout<<GridTraveller(1,1,memo)<<endl;
+    cout<<GridTraveller(2,3,memo)<<endl;
+    cout<<GridTraveller(3,2,memo)<<endl;
+    cout<<GridTraveller(3,3,memo)<<endl;
+    cout<<GridTraveller(18,18,memo)<<endl;
+    return 0;
+}
