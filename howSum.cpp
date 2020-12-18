@@ -1,10 +1,12 @@
+//given a target and an array print all the combinations from array that sum to target
+
 #include <iostream>
 #include <vector>
 #include <map>
 
 using namespace std;
 
-vector<int> ans;
+vector<int> ans;                        // to store a combination of numbers temporarily 
 
 void canSum(int l, int target, vector <int> &arr){
 
@@ -19,7 +21,7 @@ void canSum(int l, int target, vector <int> &arr){
   if(target < 0 ) return ;
 
   for(int i=l; i<arr.size(); i++ ){
-    int remainder = target - arr[i];                //get value and increment at the same time
+    int remainder = target - arr[i];                
     ans.push_back(arr[i]);
     canSum(i+1,remainder, arr);
     ans.pop_back();
