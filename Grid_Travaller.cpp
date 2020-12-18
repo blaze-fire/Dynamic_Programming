@@ -22,9 +22,9 @@ int main(){
     map <Pair,double> memo;
 
     cout<<GridTraveller(1,1,memo)<<endl;
-    cout<<GridTraveller(2,3,memo)<<endl;
+    cout<<GridTraveller(2,2,memo)<<endl;
     cout<<GridTraveller(3,2,memo)<<endl;
     cout<<GridTraveller(3,3,memo)<<endl;
-    cout<<GridTraveller(18,18,memo)<<endl;
+    cout<<GridTraveller(20,20,memo)<<endl;
     return 0;
 }
