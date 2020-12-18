@@ -1,5 +1,5 @@
 // Used memoization to store values already computed to save time calculating them again
-
+// Time Complexity O(m*n) Space Complexity( O(m) )
 #include <iostream>
 #include <map>
 
@@ -14,12 +14,12 @@ double GridTraveller(int m, int n, map <Pair,double> &memo){
   if(m==1 && n==1)  return 1;
   if(m==0 || n==0) return 0;
 
-  memo[key] = GridTraveller(m-1,n,memo) + GridTraveller(m,n-1,memo);
+  memo[key] = GridTraveller(m-1,n,memo) + GridTraveller(m,n-1,memo);      //store the values inside map so not to calculate them again and again saving time
   return memo[key];
 }
 
 int main(){
-    map <Pair,double> memo;
+    map <Pair,double> memo;                                        //memoization
 
     cout<<GridTraveller(1,1,memo)<<endl;
     cout<<GridTraveller(2,2,memo)<<endl;
