@@ -1,20 +1,21 @@
 #include <iostream>
+#include <vector>
 #include <map>
 
 using namespace std;
-
+vector<int> ans;
 typedef pair<int,int> Pair; 
 
-bool canSum(int target, int arr[], int size, map<int,bool> &memo){
+bool canSum(int l, int target, vector <int> &arr, map<int,bool> &memo){
   if(memo.count(target) > 0) return memo[target];
   if(target == 0) return true;
   if(target < 0 ) return false;
 
-  for(int i=0; i < size; i++){
-    
-    int remainder = target - arr[i];
-
-    if(canSum(remainder, arr, size,memo)){
+  for(int i=l; i<arr.size(); i++ ){
+    int remainder = target - arr[i];                //get value and increment at the same time
+  
+    if(canSum(i+1,remainder, arr, memo)){
+      cout<<arr[i]<<" ";                            // to print the desired numbers that reach the targetsum
       memo[target] = true;
       return true;
     }  
@@ -24,9 +25,14 @@ bool canSum(int target, int arr[], int size, map<int,bool> &memo){
 }
 
 int main(){
-  int arr[3] = {7,14,0};
+  vector <int> arr = {4,7,2};
   map <int,bool> memo;
-  cout<<canSum(100,arr,3,memo)<<endl;    
-  
+  if(canSum(0,7,arr,memo)){
+    cout<<endl<<"Yes !!"<<endl;
+  }    
+  else
+  {
+    cout<<endl<<"No"<<endl;
+  }
     return 0;
 }
