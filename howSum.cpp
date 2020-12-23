@@ -30,9 +30,9 @@ void canSum(int l, int target, vector <int> &arr){
 }
 
 int main(){
-  vector <int> arr = {1,4,2,5,7,3};
+  vector <int> arr = {2, 7, 11, 15};
 
-  canSum(0,7,arr);
+  canSum(0,9,arr);
 
   return 0;
 }
