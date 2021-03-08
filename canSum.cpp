@@ -28,7 +28,7 @@ bool canSum(int l, int target, vector <int> &arr, map<int,bool> &memo){
 }
 
 int main(){
-  vector <int> arr = {4,7,2};
+  vector <int> arr = {4, 1, 2, 3};
   map <int,bool> memo;
   if(canSum(0,7,arr,memo)){
     cout<<endl<<"Yes !!"<<endl;

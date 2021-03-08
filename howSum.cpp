@@ -8,7 +8,7 @@ using namespace std;
 
 vector<int> ans;                        // to store a combination of numbers temporarily 
 
-void canSum(int l, int target, vector <int> &arr){
+void howSum(int l, int target, vector <int> &arr){
 
   if(target == 0){
       for(int i=0; i<ans.size(); i++){
@@ -23,7 +23,7 @@ void canSum(int l, int target, vector <int> &arr){
   for(int i=l; i<arr.size(); i++ ){
     int remainder = target - arr[i];                
     ans.push_back(arr[i]);
-    canSum(i+1,remainder, arr);
+    howSum(i+1,remainder, arr);
     ans.pop_back();
   }
 
@@ -32,7 +32,7 @@ void canSum(int l, int target, vector <int> &arr){
 int main(){
   vector <int> arr = {2, 7, 11, 15};
 
-  canSum(0,9,arr);
+  howSum(0,9,arr);
 
   return 0;
 }
