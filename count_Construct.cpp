@@ -1,4 +1,4 @@
-/// give number of ways in which a target string can be achiebed by concatenating substringd from given array
+// give number of ways in which a target string can be achiebed by concatenating substringd from given array
 #include<iostream>
 #include<vector>
 using namespace std;
