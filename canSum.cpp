@@ -1,4 +1,4 @@
-//given a targetsum and an array return a bollean value whether it is possible to
+// given a targetsum and an array return a bollean value whether it is possible to
 // generate target sum using given array
 
 #include <iostream>
