@@ -41,4 +41,6 @@ int main() {
     for(; itr != memo[smallest].end(); itr++){
         cout<<*itr<<"   ";
     }
+
+    return 0;
 }
