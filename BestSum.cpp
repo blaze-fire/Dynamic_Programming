@@ -1,50 +1,44 @@
 //given a target and an array print the shortest length of combination from array that sum to target
+//given a target and an array print all the combinations from array that sum to target
 
 #include <iostream>
-#include <vector>
 #include <map>
+#include <vector>
 
 using namespace std;
 
-vector<int> local;                        // to store a combination of numbers temporarily 
-vector<int> ans;                          // to store the shortest combination
+vector<int> local;
+int smallest = 10000;
 
-int min_length=10000;                     // initialize min length to a really high value
+// here size of array os key and the vector is value
 
-void BestSum(int l, int target, vector <int> &arr){
+void CanSum(int l, int target, vector<int> arr, map<int, vector<int>> &memo){
+    if(memo.find(local.size()) != memo.end())  return;                        // if already an array of that size exists no need to proceed 
+    if(target < 0)    return;
+    if(target == 0){
+        if(local.size()<smallest){                                            // if given array is smallest replace the smallest array
+            smallest = local.size();
+            memo[smallest] = local;
+        }
+        return;
+    }
 
-  if(target == 0){
-      if(local.size() < min_length){                                        //check for minimum length
-          min_length = local.size();                                        //change min length
-          ans.erase(ans.begin(),ans.end());                                 //empty the vector to fill with the shortest combination
-          vector<int>::iterator itr = local.begin();                        //iterator pointing to the start of the vector
-          for(; itr != local.end(); itr++){
-              ans.push_back(*itr);                                          //dereferencing and pushing the value at the end of vector
-          }
-      }
-      return;
-  }
+    for(int i=l; i<arr.size(); i++){
+        int remainder = target - arr.at(i);
+        local.push_back(arr[i]);
+        CanSum(i+1, remainder, arr, memo);
+        local.pop_back();
+    }
 
-  if(target < 0 ) return ;
-
-  for(int i=l; i<arr.size(); i++ ){
-
-    int remainder = target - arr[i];                
-    local.push_back(arr[i]);
-    BestSum(i+1,remainder, arr);
-    local.pop_back();
-  }
-
+    return;
 }
 
-int main(){
-  vector <int> arr = {1,4,2,5,3,4,3,4};
-
-  BestSum(0,7,arr);
-  vector<int>::iterator itr = ans.begin();
-
-  for(; itr != ans.end(); itr++){
-     cout<<*itr<<"   ";
-  }
-  return 0;
+int main() {
+    map <int, vector<int>> memo;
+    vector<int> arr = {2, 5, 4, 3, 1, 7};
+    CanSum(0, 7, arr, memo);
+    auto itr = memo[smallest].begin();
+    for(; itr != memo[smallest].end(); itr++){
+        cout<<*itr<<"   ";
+    }
 }
